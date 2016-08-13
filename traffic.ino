@@ -43,7 +43,7 @@ int pot() {
 	For optimization, these two methods could be combined into one. This could add more complexity, however, as two debounces would need to be used rather than one.
 */
 bool shouldChangeLight() {
-  static bool debounce = false;
+  static bool debounce = false; // Static variables preserve their value across function calls
   bool light = digitalRead(btnChangeLight);
   if (light && !debounce) {
     debounce = true;
@@ -53,7 +53,7 @@ bool shouldChangeLight() {
   return false;
 }
 
-bool shouldChangeMode() {
+bool shouldChangeMode() { // Identical to shouldChangeLight() except for the pin constant
   static bool debounce = false;
   bool mode = digitalRead(btnChangeMode);
   if (mode && !debounce) {
@@ -64,6 +64,19 @@ bool shouldChangeMode() {
   return false;
 }
 
+/*
+	A note on millis():
+
+	Traditionally, If you want to wait for some time on Arduino, you'd use delay(). For this application, delay() presents a problem: it blocks the loop, so that pressing the buttons or changing the pot do not cause any visible changes until after the delay is over. I wanted these changes to be dealt with as soon as they happened.
+
+	millis() returns the amount of milliseconds since the program started running. By applying modulo operations to it (such as millis() % 500) and checking if the result is 0, we can ensure that certain portions of our code are only executed in regular intervals. For example, the last few lines of code in loop():
+
+		if (millis() % 1000 == 0) {
+			Serial.println(pot());
+		}
+
+	...Will only be run every second, and therefore the serial console will not be spammed.
+*/
 void executeCurrentMode() {
   static int brightness = 0;
   static bool shouldIncrement = true;
@@ -82,6 +95,11 @@ void executeCurrentMode() {
       break;
     case FADE:
       if (millis() % 20 == 0) {
+				/*
+					Following code can be optimized like so:
+					brightness = brightness + (shouldIncrement ? 1 : -1);
+					shouldIncrement = (brightness >= 255 ? false : true);
+				*/
         if (shouldIncrement) brightness++;
         if (!shouldIncrement) brightness--;
         if (brightness >= 255) shouldIncrement = false;
@@ -92,6 +110,11 @@ void executeCurrentMode() {
   }
 }
 
+/*
+	A note on switch:
+
+	In this application switch statements are used to determine what mode/light to switch to based on the current mode/light. This can probably be optimized by iterating over the enums.
+*/
 void loop() {
   // Acquire values
   if (shouldChangeLight()) {
