@@ -22,6 +22,6 @@ Please note that comments have been added after-the-fact (I was short on time). 
 
 ![Arduino and breadboard wired up](/board.png)
 
-The bill of materials is available [here](meme) (bill-of-materials.html)
+The bill of materials is available [http://htmlpreview.github.io/?https://github.com/Nexuist/Arduino-Traffic-Light/blob/master/bill-of-materials.html](meme) (bill-of-materials.html)
 
 Red wires carry a 5V charge, black wires connect to ground, and orange wires connect to an Arduino pin. All resistors are 220Ω.
