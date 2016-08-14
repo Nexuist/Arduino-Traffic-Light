@@ -2,7 +2,7 @@
 
 One of the projects for our Exploring Computer Science class was to develop some kind of device that used LEDs, potentiometers, serial output, etc. This is my project.
 
-I developed a traffic light with a red, yellow, and green LED as well as a potentiometer and two push buttons. The documentation is available here. The code and board were finished completely on March 29, 2016.
+I developed a traffic light with a red, yellow, and green LED as well as a potentiometer and two push buttons. The documentation is available below. The code and board were finished completely on March 29, 2016.
 
 ### Operation
 
