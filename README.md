@@ -14,16 +14,14 @@ I developed a traffic light with a red, yellow, and green LED as well as a poten
 
 * The `Change Mode` button will iterate between `BLINK` (turning on and off every half second), `FADE` (moving from lowest to highest brightness and back again), and `STAY_ON` (self explanatory).
 
-* The brightness of the current light can be controlled using the potentiometer.
-
 ### Code Quality
 
 Please note that comments have been added after-the-fact (I was short on time). Also, at the time of this writing, the board had already been taken apart, so I can not test any changes. Therefore, I have not modified the code in any way other than adding comments. This means that there are probably (most likely) sections that are inefficient and unoptimized. I will try to note this in the comments.
 
-### Circuit
+### Breadboard
 
-TODO
+![Arduino and breadboard wired up](/board.png)
 
-### Demo
+The bill of materials is available [here](meme) (bill-of-materials.html)
 
-TODO
+Red wires carry a 5V charge, black wires connect to ground, and orange wires connect to an Arduino pin. All resistors are 220Ω.
